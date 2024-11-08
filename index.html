@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>May Thet Naing - Profile</title>
+
+  <!-- bootstrap css link  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- bootstrap js link  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- font-awesome cdn link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- smtp mail js link -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+
+  <!-- sweet alert js link -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+  </script>
+
+  <style>
+    body {
+      color: white;
+      background-color: rgb(64, 64, 64);
+    }
+
+    .check {
+      /* border: 1px solid red;  */
+    }
+
+    #greeting {
+      color: white;
+      padding: 5dvh 0dvh 5dvh 0dvh;
+    }
+
+    #coverPhoto {
+      padding: 3dvh 0dvh 3dvh 0dvh;
+    }
+
+    #education {
+      color: white;
+    }
+
+    #techSkill {
+      padding: 2dvh;
+    }
+
+    .skillCard {
+      margin: 0dvh 2dvh 2dvh 0dvh;
+      padding: 1dvh;
+      background-color: rgb(85, 85, 85);
+      font-size: smaller;
+      color: white;
+      border-radius: 1dvb;
+      min-width: 80px;
+      font-size: x-small;
+
+    }
+
+    .img-skills {
+      background-color: rgb(88, 85, 85);
+      border: none;
+      align-self: center;
+      width: 30px;
+    }
+
+    .educationCard {
+      background-color: #0dcaf0;
+      border-radius: 10px;
+      color: black;
+    }
+
+    #contactme {
+      color: white;
+      background-color: rgb(88, 85, 85);
+      border-radius: 4dvh;
+    }
+
+    #contactme span {
+      min-width: 300px;
+      word-wrap: break-word;
+    }
+
+    textarea::placeholder,
+    input::placeholder {
+      font-size: 16px;
+    }
+
+    /* timeline - start*/
+
+    /* The actual timeline (the vertical ruler) */
+    .main-timeline {
+      position: relative;
+    }
+
+    /* The actual timeline (the vertical ruler) */
+    .main-timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #939597;
+      top: 0;
+      bottom: 0;
+      left: 55px;
+      margin-left: -3px;
+      /* left: 31px; */
+    }
+
+    /* Container around content */
+    .timeline {
+      position: relative;
+      background-color: inherit;
+      width: 100%;
+      padding-left: 100px !important;
+      padding-right: 25px !important;
+    }
+
+    /* The circles on the timeline */
+    .timeline::after {
+      content: attr(data-content);
+      position: absolute;
+      width: 70px;
+      height: 50px;
+      right: -13px;
+      background-color: rgb(88, 85, 85);
+      border: 2px solid white;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+      padding-top: 10px;
+      color: white;
+      ;
+    }
+
+    /* Place the container to the left */
+    /* .left {
+          padding: 0px 40px 20px 0px;
+          left: 0;
+        } */
+
+    /* Place the container to the right */
+    .right {
+      padding: 0px 0px 20px 40px;
+      /* left: 50%; */
+
+    }
+
+    /* Add arrows to the left container (pointing right) */
+    /* .left::before {
+          content: " ";
+          position: absolute;
+          top: 18px;
+          z-index: 1;
+          right: 30px;
+          border: medium solid white;
+          border-width: 10px 0 10px 10px;
+          border-color: transparent transparent transparent white;
+        } */
+
+    /* Add arrows to the right container (pointing left) */
+    .right::before {
+      content: " ";
+      position: absolute;
+      top: 18px;
+      z-index: 1;
+      /* left: 30px; */
+      /* left: 45%; */
+      /* border: medium solid white; */
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #0dcaf0 transparent transparent;
+      /* background-color: #0dcaf0;  */
+    }
+
+    /* Fix the circle for containers on the right side */
+    .right::after {
+      left: -12px;
+    }
+
+    /* Media queries - Responsive timeline on screens less than 600px wide */
+
+
+    /* @media screen and (max-width: 600px) { */
+    /* Place the timelime to the left */
+    /* .main-timeline::after {
+            left: 31px;
+          } */
+
+    /* Full-width containers */
+    /* .timeline {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+          } */
+
+    /* Make sure that all arrows are pointing leftwards */
+    .timeline::before {
+      left: 90px;
+      border: medium solid white;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #0dcaf0 transparent transparent;
+
+
+    }
+
+    /* Make sure all circles are at the same spot */
+    .left::after,
+    .right::after {
+      left: 18px;
+    }
+
+    .left::before {
+      right: auto;
+    }
+
+    /* Make all right containers behave like the left ones */
+    .right {
+      left: 0%;
+    }
+
+    /* }  */
+    /* timeline - end*/
+  </style>
+</head>
+
+<body class="">
+
+  <div class="d-flex container">
+
+    <div class="d-flex flex-column text-center  col-8">
+
+      <!-- greeting start -->
+      <div id="greeting">
+        <h1>Hello,</h1>
+        <h4>I'm May.</h4>
+        <p class="pb-3 ps-5 pe-5">
+          <i>(Project Manager/ Full-stack Web Developer)</i> <br><br>
+          Experienced software project manager and developer with over 11 years in the technology and service industry.
+          I have a strong background in software development in a variety of programming languages. As a project
+          manager,
+          I excel in leading cross-functional teams, managing project budgets and timelines, and ensuring successful
+          project delivery.
+        </p>
+        <a href="./assets/MrsMayThetNaing_CV.pdf" class="btn btn-danger" download me-3>Download CV</a>
+        <a href="https://www.linkedin.com/in/may-thet-naing-40b504120" target="_blank"><i
+            class="fa-brands fa-linkedin fa-2xl" fs-5 me-3></i></a>
+      </div>
+      <!-- greeting end -->
+
+      <!-- work experience & education start -->
+      <div class="" id="education">
+        <hr>
+        <h3 class="p-1 ">Work Experiences & Education</h3>
+        <div class="d-flex flex-row flex-wrap py-3">
+          <section class="check">
+            <div class="main-timeline">
+              <div data-content="2022" class="timeline right">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">General Manager</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2018" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Project Manager</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2015" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Project Leader</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2012" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Software Developer</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2010" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Web Administrator</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="check">
+            <div class="main-timeline">
+              <div data-content="2012" class="timeline right">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Post Gradulate Diploma in System Analyst</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2007" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Bachelor of Computer Science (Hons) (Q)</p>
+                  </div>
+                </div>
+              </div>
+              <div data-content="2006" class="timeline right ">
+                <div class="educationCard">
+                  <div class="card-body p-3">
+                    <p class="mb-0">Bachelor of Computer Science</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- work experience & education end -->
+    </div>
+
+    <!-- cover photo & skills start -->
+    <div class="d-flex flex-column text-center col-4 ">
+      <div class="check" id="coverPhoto">
+        <img class="col-10 opacity-50  rounded-5 w-75" src="./assets/IMG_1720.jpg" alt="">
+      </div>
+      <div class="check text-center " id="techSkill">
+        <h3 class="p-1">My Skills</h3> <br>
+        <div class="d-flex justify-content-center flex-wrap">
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" src="https://cdn.svgporn.com/logos/html-5.svg" alt=""></div>
+            <div>html </div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" src="https://cdn.svgporn.com/logos/javascript.svg" alt=""></div>
+            <div>Javascript</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" src="https://releases.jquery.com/wp-content/themes/releases.jquery.com/i/favicon.ico" alt=""></div>
+            <div>JQuery</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/bootstrap.svg" alt=""></div>
+            <div>Bootstrap</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/react.svg" alt=""></div>
+            <div>React</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/laravel.svg" alt=""></div>
+            <div>Laravel</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/dotnet.svg" alt=""></div>
+            <div>.Net</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px
+                src="https://assets-global.website-files.com/6064b31ff49a2d31e0493af1/63a5752c581f4d6558272fef_mssql.svg"
+                alt=""></div>
+            <div>MSSQL</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/mysql-icon.svg" alt=""></div>
+            <div>MySQL</div>
+          </div>
+          <div class="skillCard d-flex flex-column justify-content-between">
+            <div><img class=" img-skills" width=30px src="https://cdn.svgporn.com/logos/gitlab.svg" alt=""></div>
+            <div>Git Source Control</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- cover photo & skills end -->
+  </div>
+
+  <!-- freelancer project start -->
+  <div class="bg-danger text-center py-5">
+    <p class="fs-5">Do you have any Projects?</p>
+    <h3 class="mb-4">I'm Available for Freelancer Projects</h3>
+    <button class="btn btn-outline-light" onclick='window.location="#contactme"'>Contact Me</button>
+  </div>
+  <!-- freelancer project end -->
+
+  <!-- contact me form start -->
+  <div id="contactme" class="container  pt-3 pb-1">
+    <div class="row m-5">
+      <!-- contact info start -->
+      <div class="col-md-4">
+        <div class="row my-3">
+          <div class="col-md-2"><i class="fa-solid fa-phone text-danger"></i></div>
+          <div class="col-md-10">
+            <div>Phone</div>
+            <div><span>+95 9775591165</span></div>
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col-md-2"><i class="fa-solid fa-envelope text-danger"></i></div>
+          <div class="col-md-10">
+            <div>Mail</div>
+            <div><span>maythetnaing.biz@gmail.com</span></div>
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col-md-2"><i class="fa-solid fa-home text-danger"></i></div>
+          <div class="col-md-10">
+            <div>Address</div>
+            <div><span>Hlaing Township, Yangon, Myanmar</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- contact info end -->
+
+      <!-- contact form start -->
+      <div class="col-md-8">
+        <div class="row ">
+          <div class="col-md-6 p-3"><input id="name" type="text" name="" class="form-control form-control-lg"
+              placeholder="Your Name..."></div>
+          <div class="col-md-6 p-3"><input id="email" type="text" name="" class="form-control form-control-lg"
+              placeholder="Your Email..."></div>
+        </div>
+        <div class="row ">
+          <div class="col-md-12 p-3"><input id="subject" type="text" name="" class="form-control form-control-lg"
+              placeholder="Subject..."></div>
+        </div>
+        <div class="row ">
+          <div class="col-md-12 p-3"><textarea name="" id="message" class="form-control form-control-lg"
+              placeholder="Your Message..."></textarea></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 p-3"><button onclick="sendEmail()" class="btn btn-danger">Send Messsage</button></div>
+        </div>
+
+
+      </div>
+      <!-- contact form end -->
+    </div>
+
+  </div>
+  <!-- contact me form end -->
+
+  <!-- footer start -->
+  <div class="text-center py-4 ">
+    <p class="fst-italic">We Learn, We Develop, We Upgrade | most essential up for all coders</p>
+  </div>
+  <!-- footer end -->
+</body>
+
+<script>
+
+  // connect to email service account (https://dashboard.emailjs.com/sign-in)
+  (function () {
+    emailjs.init("TaSK7XSZtq0_V6AVa"); // Replace with your EmailJS User ID
+  })();
+
+  // send mail 
+  function sendEmail() {
+    let cpnName = document.getElementById("name");
+    let cpnSubject = document.getElementById("subject");
+    let cpnMessage = document.getElementById("message");
+    let cpnEmail = document.getElementById("email");
+
+    const templateParams = {
+      from_name: cpnName.value,
+      reply_to: cpnEmail.value, // Your email for replies
+      to_name: 'May Profile',
+      subject: cpnSubject.value,
+      message: cpnMessage.value,
+    };
+
+    emailjs.send('service_r5lxu5j', 'template_mxjbry9', templateParams)
+      .then(function (response) {
+        console.log('SUCCESS!', response.status, response.text);
+        swal("Email Successfully Send.", "I will contact you as soon as possible.", "success", {
+          button: "Close",    
+        });
+        cpnName.value='';
+        cpnSubject.value='';
+        cpnMessage.value='';
+        cpnEmail.value='';
+
+      }, function (error) {
+        console.log('FAILED...', error);
+        alert('Failed to send email. Try again.');
+        swal("Failed to send email.", "Try again", "fail", {
+          button: "Close",    
+        });
+      });
+  };
+
+</script>
+
+</html>
+
+<!--
+order-md-first
+d-flex | flex-column | flex-row | flex-wrap
+word-wrap: break-word,
+z-index,
+input,
+input::placeholder {
+    font: 1.25rem/3 sans-serif;
+}
+    
+-->
